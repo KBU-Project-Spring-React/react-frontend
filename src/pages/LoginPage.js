@@ -12,7 +12,7 @@ const LoginPage = () => {
     const loginHandler = async (e) => {
         try {
             e.preventDefault();
-            const result = await axios.post('/login', { username, password });
+            const result = await axios.post('/signup', { username, password });
             toast.success('로그인');
             navigate('/');
         } catch (err) {
