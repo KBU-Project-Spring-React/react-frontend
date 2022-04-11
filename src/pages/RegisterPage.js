@@ -14,7 +14,7 @@ const RegisterPage = () => {
         try {
             e.preventDefault();
             if (password !== passwordCheck) throw new Error('비밀번호가 달라요!');
-            const result = await axios.post('/register', { username, password }); //request 동작
+            const result = await axios.post('/signUp', { username, password }); //request 동작
             toast.success('회원가입 성공');
             navigate('/');
         } catch (err) {
