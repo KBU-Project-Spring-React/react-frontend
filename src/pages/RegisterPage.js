@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CustomInput from '../components/CustomInput';
-import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPage = () => {
     const [username, setUsername] = useState('');
