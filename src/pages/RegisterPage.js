@@ -13,10 +13,8 @@ const RegisterPage = () => {
     const submitHandler = async (e) => {
         try {
             e.preventDefault();
-            if (username.length < 3) throw new Error('이름이 너무 짧아요!');
-            if (password.length < 6) throw new Error('비밀번호는 6자리 이상 해주세요!');
             if (password !== passwordCheck) throw new Error('비밀번호가 달라요!');
-            const result = await axios.post('/register', { username, password }); //request 동작
+            const result = await axios.post('/signUp', { username, password }); //request 동작
             toast.success('회원가입 성공');
             navigate('/');
         } catch (err) {
