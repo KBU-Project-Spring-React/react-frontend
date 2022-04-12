@@ -3,7 +3,6 @@ import CustomInput from '../components/CustomInput';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
