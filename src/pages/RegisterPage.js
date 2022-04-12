@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CustomInput from '../components/CustomInput';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPage = () => {
     const [username, setUsername] = useState('');
@@ -15,11 +16,20 @@ const RegisterPage = () => {
             e.preventDefault();
             if (password !== passwordCheck) throw new Error('비밀번호가 달라요!');
             const result = await axios.post('/signUp', { username, password }); //request 동작
-            toast.success('회원가입 성공');
-            navigate('/');
+            switch (result.data.status) {
+                case '200':
+                    toast.success(result.data.message);
+                    console.log(result.data.message);
+                    navigate('/');
+                    break;
+                case '400':
+                    toast.error(result.data.message);
+                    console.log(result.data.message);
+                    break;
+            }
         } catch (err) {
             // err : 응답의 에러 메시지
-            toast.error(err.message);
+            //toast.error(err.message);
         }
     };
 
