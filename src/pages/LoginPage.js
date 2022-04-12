@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import CustomInput from '../components/CustomInput';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -13,10 +14,19 @@ const LoginPage = () => {
         try {
             e.preventDefault();
             const result = await axios.post('/login', { username, password });
-            toast.success('로그인');
-            navigate('/');
+            switch (result.data.status) {
+                case '200':
+                    toast.success(result.data.message);
+                    console.log(result.data.message);
+                    navigate('/');
+                    break;
+                case '400':
+                    toast.error(result.data.message);
+                    break;
+            }
         } catch (err) {
-            toast.error('에러났당헤헤헤');
+            // console.log(err.respense);
+            // toast.error(err.respense);
         }
     };
 

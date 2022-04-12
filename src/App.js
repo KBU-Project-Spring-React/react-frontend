@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import MainPage from './pages/MainPage';
 import RegisterPage from './pages/RegisterPage';
@@ -8,6 +9,7 @@ import LoginPage from './pages/LoginPage';
 const App = () => {
     return (
         <div>
+            <ToastContainer />
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
