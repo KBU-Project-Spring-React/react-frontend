@@ -19,15 +19,20 @@ const ToolBar = () => {
     };
 
     return (
-        <div>
+        <div style={{ borderBottom: '1px solid' }}>
             <Link to="/">
                 <span>홈</span>
             </Link>
 
             {me ? (
-                <span onClick={logoutHandler} style={{ float: 'right', cursor: 'pointer' }}>
-                    로그아웃
-                </span>
+                <>
+                    <span onClick={logoutHandler} style={{ float: 'right', cursor: 'pointer' }}>
+                        로그아웃({me.loginId})
+                    </span>
+                    <Link to="/mypage">
+                        <span style={{ float: 'right', marginRight: 15 }}>마이페이지</span>
+                    </Link>
+                </>
             ) : (
                 <>
                     <Link to="/login">

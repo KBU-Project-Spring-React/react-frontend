@@ -16,11 +16,11 @@ const LoginPage = () => {
         try {
             e.preventDefault();
             const result = await axios.post('/login', { username, password }); //request 동작
-            setMe({ sessionId: result.headers.Jsession });
             switch (result.data.status) {
                 case 'OK':
-                    toast.success(result.data.message);
+                    setMe({ loginId: result.data.loginId, sessionId: result.data.sessionId });
                     console.log(result.data);
+                    toast.success(result.data.message);
                     navigate('/');
                     break;
                 case 'BAD_REQUEST':
