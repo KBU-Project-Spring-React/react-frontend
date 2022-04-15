@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
                 .get('/Auth/me', { headers: { Jsession: sessionId } })
                 .then((result) =>
                     setMe({
-                        sessionId: result.data.sessionId,
+                        sessionId: result.headers.Jsession,
                     })
                 )
                 .catch((err) => {
