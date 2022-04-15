@@ -9,7 +9,7 @@ const ToolBar = () => {
 
     const logoutHandler = async () => {
         try {
-            await axios.patch('/users/logout');
+            await axios.patch('/logout');
             setMe(); //초기화
             toast.success('로그아웃 성공');
         } catch (err) {
