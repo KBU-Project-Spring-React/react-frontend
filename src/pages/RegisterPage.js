@@ -16,19 +16,19 @@ const RegisterPage = () => {
             if (password !== passwordCheck) throw new Error('비밀번호가 달라요!');
             const result = await axios.post('/signUp', { username, password }); //request 동작
             switch (result.data.status) {
-                case '200':
+                case 'OK':
                     toast.success(result.data.message);
                     console.log(result.data.message);
                     navigate('/');
                     break;
-                case '400':
+                case 'BAD_REQUEST':
                     toast.error(result.data.message);
                     console.log(result.data.message);
                     break;
             }
         } catch (err) {
-            // err : 응답의 에러 메시지
-            //toast.error(err.message);
+            //err : 응답의 에러 메시지
+            toast.error(err);
         }
     };
 

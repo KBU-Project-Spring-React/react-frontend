@@ -1,25 +1,29 @@
 import React, { useContext, useState } from 'react';
 import CustomInput from '../components/CustomInput';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../context/AuthContext';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [, setMe] = useContext(AuthContext);
     const navigate = useNavigate();
 
     const loginHandler = async (e) => {
         try {
             e.preventDefault();
-            const result = await axios.post('/login', { username, password });
+            const result = await axios.post('/login', { username, password }); //request 동작
             switch (result.data.status) {
-                case '200':
+                case 'OK':
+                    setMe({ loginId: result.data.loginId, sessionId: result.data.sessionId });
+                    console.log(result.data);
                     toast.success(result.data.message);
-                    console.log(result.data.message);
                     navigate('/');
                     break;
-                case '400':
+                case 'BAD_REQUEST':
                     toast.error(result.data.message);
                     break;
             }
